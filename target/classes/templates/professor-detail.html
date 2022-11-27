@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <title>Professoren</title>
+</head>
+
+<body>
+<h2>Professor</h2>
+
+<div th:each="p: ${professor}" th:value="${p}">
+    <div>
+        <label>Id</label>
+        <span th:text="${p.id}"></span>
+    </div>
+    <div>
+        <label>Name</label>
+        <span th:text="${p.name}"></span>
+    </div>
+    <div>
+        <label>Rang</label>
+        <span th:text="${p.rang}"></span>
+    </div>
+    <div>
+        <label>Gehalt</label>
+        <span th:text="${p.gehalt}"></span>
+    </div>
+    <div>
+        <label>Bueroraum</label>
+        <span th:text="${p.raum.name}"></span>
+    </div>
+
+
+</div>
+</body>

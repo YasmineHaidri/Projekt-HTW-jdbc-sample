@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/main.css">
+    <title>Studierende</title>
+</head>
+
+<body>
+<h2>Studierende</h2>
+
+<h3>New</h3>
+<div>
+    <form th:action="@{'/ui/studierende'}"
+          th:object="${studentTemplate}"
+          method="POST"
+          enctype="multipart/form-data"
+          action="#">
+        <div>
+            <label>name</label>
+            <input id="name" type="text" th:field="*{name}"
+                   placeholder="Enter Name"/>
+        </div>
+        <div>
+            <label>Vorname</label>
+            <input id="vorname" type="text" th:field="*{vorname}"/>
+        </div>
+        <div>
+            <label>Geburtsdatum</label>
+            <input id="geburtsdatum" type="date" th:field="*{geburtsdatum}"/>
+        </div>
+        <div>
+            <label>Geburtsort</label>
+            <input id="geburtsort" type="text" th:field="*{geburtsort}"/>
+        </div>
+        <div>
+            <label>Semester</label>
+            <input id="semester" type="number" th:field="*{semester}"/>
+        </div>
+        <div>
+            <label>Studienbeginn</label>
+            <input id="studienbeginn" type="text" th:field="*{studienbeginn}"/>
+        </div>
+
+        <input type="submit" width="60" class="btn" value="save"/>
+    </form>
+</div>
+
+<h3>List</h3>
+<table>
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Matrikel Nr.</td>
+        <td>Name</td>
+        <td>Vorname</td>
+        <td>Geburtsdatum</td>
+        <td>Geburtsort</td>
+        <td>Semester</td>
+        <td>Studienbeginn</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="s: ${studierende}" th:value="${s}">
+        <td>
+            <span th:text="${s.id}"></span>
+        </td>
+        <td>
+            <span th:text="${s.matrikelNr}"></span>
+        </td>
+        <td>
+            <a th:href="@{'/ui/studierende/' + ${s.id}}">
+                <span th:text="${s.name}"></span>
+            </a>
+        </td>
+        <td>
+            <span th:text="${s.vorname}"></span>
+        </td>
+        <td>
+            <span th:text="${s.geburtsdatum}"></span>
+        </td>
+        <td>
+            <span th:text="${s.geburtsort}"></span>
+        </td>
+        <td>
+            <span th:text="${s.semester}"></span>
+        </td>
+        <td>
+            <span th:text="${s.studienbeginn}"></span>
+        </td>
+        </a>
+        <td>
+            <form action="#"
+                  enctype="multipart/form-data"
+                  th:action="@{'/ui/studierende/'+ ${s.id}}"
+                  th:method="DELETE">
+                <input class="btn" type="submit" value="Delete" width="60"/>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
